@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>saveUserServlet</servlet-name>
-        <servlet-class>pck.users.saveUserServlet</servlet-class>
+        <servlet-name>insertUserServlet</servlet-name>
+        <servlet-class>pck.users.insertUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getUsersServlet</servlet-name>
+        <servlet-class>pck.users.getUsersServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>saveUserServlet</servlet-name>
-        <url-pattern>/saveUserServlet</url-pattern>
+        <servlet-name>insertUserServlet</servlet-name>
+        <url-pattern>/insertUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getUsersServlet</servlet-name>
+        <url-pattern>/getUsersServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
