@@ -16,8 +16,7 @@ create table users
 )
 
 /*Crear un user*/
-insert into users (Id, Name, LastName, Phone, Email, Address)
-values (1, 'John', 'Doe', 123, 'john.doe@gmail.com', 'Miami, FL')
+insert into users (Id, Name, LastName, Phone, Email, Address) values (1, 'John', 'Doe', 123, 'john.doe@gmail.com', 'Miami, FL')
 
 insert into users (Id, Name, LastName, Phone, Email, Address)
 values (2, 'Will', 'Smith', 124, 'will.smith@gmail.com', 'Tampa, FL')
@@ -29,7 +28,7 @@ values (4, 'Sthepen', 'Berg', 125, 'step.berg@gmail.com', 'Scottdale, AR')
 select * from users
 
 /*Borrar un registro*/
-delete from users where Id = 4 and Name = 'Sthepen'
+delete from users where Id = 3 and Name = 'Sthepen'
 
 /*Update un user*/
 update users set Name = 'Jason' where Id = 3 and Name = 'Sthepen'

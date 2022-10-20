@@ -34,8 +34,8 @@ public class getUsersServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-         PrintWriter out = response.getWriter();
+
+        PrintWriter out = response.getWriter();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -44,6 +44,48 @@ public class getUsersServlet extends HttpServlet {
             ResultSet resultSet = statement.executeQuery("select * from users");
 
             out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ProductsServlet</title>");
+            out.println("<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js\" integrity=\"sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3\" crossorigin=\"anonymous\"></script>");
+            out.println("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js\" integrity=\"sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz\" crossorigin=\"anonymous\"></script>");
+            out.println("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT\" crossorigin=\"anonymous\">");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<div class=\"container\" style=\"margin-top:5%\">");
+            out.println("<table class=\"table table-hover\">");
+            out.println("<thead>");
+            out.println("<tr>");
+            out.println("<th scope=\"col\">Id</th>");
+            out.println("<th scope=\"col\">Name</th>");
+            out.println("<th scope=\"col\">Last Name</th>");
+            out.println("<th scope=\"col\">Phone</th>");
+            out.println("<th scope=\"col\">Email</th>");
+            out.println("<th scope=\"col\">Address</th>");
+            /*out.println("<th scope=\"col\">Actions</th>");*/
+            out.println("</tr>");
+            out.println("</thead>");
+            out.println("</thead>");
+            out.println("<tbody>");
+            while (resultSet.next()) {
+                out.println("<tr onclick=\"window.location.href = 'loadUserServlet?Id=" + resultSet.getInt("Id") + "';\">");
+                out.println("<th scope=\"row\">" + resultSet.getInt("Id") + "</th>");
+                out.println("<td>" + resultSet.getString("Name") + "</td>");
+                out.println("<td>" + resultSet.getString("LastName") + "</td>");
+                out.println("<td>" + resultSet.getInt("Phone") + "</td>");
+                out.println("<td>" + resultSet.getString("Email") + "</td>");
+                out.println("<td>" + resultSet.getString("Address") + "</td>");
+                /*out.println("<td><a href='loadUserServlet?Id=" + resultSet.getInt("Id") + "'>Edit</a></td>");*/
+                out.println("</tr>");
+            }
+            out.println("</tbody>");
+            out.println("</table>");
+            out.println("<a href=\"index.html\">Go back</a>");
+            out.println("</div>");
+            out.println("</body>");
+            out.println("</html>");
+
+            /*out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet ProductsServlet</title>");
@@ -65,8 +107,7 @@ public class getUsersServlet extends HttpServlet {
             out.println("   <a href=\"index.html\">Go back</a>");
             out.println("</div>");
             out.println("</body>");
-            out.println("</html>");
-
+            out.println("</html>");*/
         } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
             out.println(e.getMessage());
         }

@@ -8,6 +8,14 @@
         <servlet-name>getUsersServlet</servlet-name>
         <servlet-class>pck.users.getUsersServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadUserServlet</servlet-name>
+        <servlet-class>pck.users.loadUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateUserServlet</servlet-name>
+        <servlet-class>pck.users.updateUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertUserServlet</servlet-name>
         <url-pattern>/insertUserServlet</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>getUsersServlet</servlet-name>
         <url-pattern>/getUsersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadUserServlet</servlet-name>
+        <url-pattern>/loadUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateUserServlet</servlet-name>
+        <url-pattern>/updateUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
