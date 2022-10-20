@@ -16,6 +16,10 @@
         <servlet-name>updateUserServlet</servlet-name>
         <servlet-class>pck.users.updateUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteUserServlet</servlet-name>
+        <servlet-class>pck.users.deleteUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertUserServlet</servlet-name>
         <url-pattern>/insertUserServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>updateUserServlet</servlet-name>
         <url-pattern>/updateUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteUserServlet</servlet-name>
+        <url-pattern>/deleteUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

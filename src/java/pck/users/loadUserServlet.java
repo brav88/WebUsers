@@ -58,7 +58,7 @@ public class loadUserServlet extends HttpServlet {
 
             out.println("<div class='card' style='width: 45rem;'>");
             out.println("    <div class='card-header'>");
-            out.println("        Update user");
+            out.println("        <a class=\"btn btn-info\" href=\"getUsersServlet\">Go back</a>");
             out.println("    </div>");
             out.println("    <div class='card-body'>");
             out.println("        <form action='updateUserServlet' method='post'>");
@@ -94,12 +94,11 @@ public class loadUserServlet extends HttpServlet {
             out.println("                </div>");
             out.println("            </div>");
             out.println("            <hr>");
-            out.println("            <button type='submit' class='btn btn-primary' style='float: right'>Update</button>");
-            out.println("        </form>");
-            out.println("   <a href=\"index.html\">Go back</a>");
-            out.println("    </div>");
+            out.println("            <button type='submit' class='btn btn-primary' style='float: right;margin-left:3px'>Update</button>");                        
+            out.println("               <a class=\"btn btn-danger\" style='float: right' href='deleteUserServlet?Id=" + resultSet.getInt("Id") + "'>Delete</a>");
+            out.println("        </form>");                        
+            out.println("    </div>");            
             out.println("</div>");
-
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");

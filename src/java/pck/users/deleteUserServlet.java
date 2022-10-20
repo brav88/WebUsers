@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Samuel
  */
-public class insertUserServlet extends HttpServlet {
+public class deleteUserServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,49 +32,23 @@ public class insertUserServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        response.setContentType("text/html;charset=UTF-8");
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         try {
-            //Codigo con clases
-            /*User user = new User(
-                    Integer.parseInt(request.getParameter("txtIdn")),
-                    request.getParameter("txtName"),
-                    request.getParameter("txtLastName"),
-                    Integer.parseInt(request.getParameter("txtPhone")),
-                    request.getParameter("txtEmail"),
-                    request.getParameter("txtAddress")
-            );
-            
-            if (user.CreateUser(user)){
-                out.println("User created.");
-            }
-            else{
-                out.println("Unhandled error.");
-            }*/
-
             //Codigo sin clase
-            int txtIdn = Integer.parseInt(request.getParameter("txtIdn"));
-            String txtName = request.getParameter("txtName");
-            String txtLastName = request.getParameter("txtLastName");
-            int txtPhone = Integer.parseInt(request.getParameter("txtPhone"));
-            String txtEmail = request.getParameter("txtEmail");
-            String txtAddress = request.getParameter("txtAddress");
+            int Id = Integer.parseInt(request.getParameter("Id"));
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/WebUsers", "root", "Admin$1234");
             Statement statement = connection.createStatement();
 
-            String sql = "insert into users (Id, Name, LastName, Phone, Email, Address) "
-                    + "values (" + txtIdn + ", '" + txtName + "', '" + txtLastName + "', " + txtPhone + ", '" + txtEmail + "', '" + txtAddress + "')";
+            String sql = "delete from users where Id = " + Id;
 
             statement.executeUpdate(sql);
             statement.close();
 
-            //out.println("User created");            
             RequestDispatcher rd = request.getRequestDispatcher("/getUsersServlet");
             rd.include(request, response);
         } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
