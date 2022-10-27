@@ -32,3 +32,5 @@ delete from users where Id = 3 and Name = 'Sthepen'
 
 /*Update un user*/
 update users set Name = 'Jason' where Id = 3 and Name = 'Sthepen'
+
+select * from users where Id = 2

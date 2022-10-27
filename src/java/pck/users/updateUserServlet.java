@@ -60,7 +60,7 @@ public class updateUserServlet extends HttpServlet {
             statement.executeUpdate(sql);
             statement.close();
 
-            //out.println("User created");            
+            out.println("<script type='text/javascript'>alert('User updated');</script>");
             RequestDispatcher rd = request.getRequestDispatcher("/getUsersServlet");
             rd.include(request, response);
         } catch (NumberFormatException | ClassNotFoundException | SQLException e) {

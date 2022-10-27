@@ -49,6 +49,7 @@ public class deleteUserServlet extends HttpServlet {
             statement.executeUpdate(sql);
             statement.close();
 
+            out.println("<script type='text/javascript'>alert('User deleted');</script>");
             RequestDispatcher rd = request.getRequestDispatcher("/getUsersServlet");
             rd.include(request, response);
         } catch (NumberFormatException | ClassNotFoundException | SQLException e) {

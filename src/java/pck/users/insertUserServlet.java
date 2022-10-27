@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
@@ -32,7 +33,7 @@ public class insertUserServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
 
         response.setContentType("text/html;charset=UTF-8");
@@ -67,16 +68,26 @@ public class insertUserServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/WebUsers", "root", "Admin$1234");
             Statement statement = connection.createStatement();
+            Statement statement2 = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from users where Email = '" + txtEmail + "'");
 
-            String sql = "insert into users (Id, Name, LastName, Phone, Email, Address) "
-                    + "values (" + txtIdn + ", '" + txtName + "', '" + txtLastName + "', " + txtPhone + ", '" + txtEmail + "', '" + txtAddress + "')";
+            if (resultSet.next()) {
+                out.println("<script type='text/javascript'>alert('User already created');</script>");
+                RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+                rd.include(request, response);
+            } else {
+                String sql = "insert into users (Id, Name, LastName, Phone, Email, Address) "
+                        + "values (" + txtIdn + ", '" + txtName + "', '" + txtLastName + "', " + txtPhone + ", '" + txtEmail + "', '" + txtAddress + "')";
 
-            statement.executeUpdate(sql);
+                statement2.executeUpdate(sql);
+                statement2.close();
+
+                out.println("<script type='text/javascript'>alert('User created');</script>");
+                RequestDispatcher rd = request.getRequestDispatcher("/getUsersServlet");
+                rd.include(request, response);
+            }
+
             statement.close();
-
-            //out.println("User created");            
-            RequestDispatcher rd = request.getRequestDispatcher("/getUsersServlet");
-            rd.include(request, response);
         } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
             out.println(e.getMessage());
         }
